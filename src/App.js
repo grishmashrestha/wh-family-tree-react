@@ -35,21 +35,25 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <div style={UploadDivStyle}>
-          <label>Select file to upload </label>
-          <input type="file" name="file" onChange={this.onChangeHandler}/>
-          <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button>   
-        </div>
+        <div className= "AppBody" style={AppBodyStyle}>
+          <div style={UploadDivStyle}>
+            <label>Select csv file to upload </label>
+            <br/>
+            <input type="file" name="file" accept=".csv" style={InputStyle} onChange={this.onChangeHandler}/>
+            <button type="button" className="btn" style={BtnUpload} onClick={this.onClickHandler}>Upload</button>   
+          </div>
         
-        {/* <Todos todos={this.state.todos}/> */}
-        <div style={UserListStyle}>
-          <ul style={UserListUlStyle}>
-            {this.state.users.map(item => (
-              <li key={item.id}>{item.full_name}, {item.address || "no address"}</li>
-            ))}
-          </ul>
-        </div>
-       
+          {/* <Todos todos={this.state.todos}/> */}
+          <div style={UserListStyle}>
+            <ul style={UserListUlStyle}>
+              {this.state.users.map(item => (
+                <li key={item.id}>
+                {item.full_name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>     
       </div>
     );
   }
@@ -60,7 +64,6 @@ const UploadDivStyle = {
   borderColor: '#333',
   textAlign: 'center',
   padding:  '10px'
-
 }
 
 const UserListStyle = {
@@ -70,6 +73,28 @@ const UserListStyle = {
 const UserListUlStyle = {
   textAlign: 'left',
   margin: 'auto',
-  width: '60%'
+  width: '25%',
+  listStyle: 'none'
 }
+
+const AppBodyStyle = {
+  fontSize: '14px'
+}
+
+const InputStyle = {
+  border: 'solid',
+  borderColor: '#333',
+  borderWidth: '1px',
+  borderRadius: '5px'
+}
+
+const BtnUpload = {
+  color: '#fff',
+  backgroundColor: '#333',
+  border: 'none',
+  borderRadius: '2px',
+  margin: '5px',
+  padding: '5px 20px'
+}
+
 export default App;
