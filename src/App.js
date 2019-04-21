@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import Todos from './components/Todos';
 import Header from './components/layout/Header'
 import axios from 'axios';
 import './App.css';
 
 class App extends Component {
-  
-  state = {
-    users: []
+
+  constructor(props){
+    super(props);
+    this.state = {
+      users: []
+    }
   }
 
   componentDidMount() {
+    console.log('test')
     axios.get("http://localhost:4000/api/v1/users")
       .then(res => this.setState({ users: res.data.users }));
   }
@@ -25,9 +28,7 @@ class App extends Component {
   onClickHandler = () => {
     const data = new FormData()
     data.append('file', this.state.selectedFile)
-    axios.post("http://localhost:4000/api/v1/users", data, { 
-      // receive two parameter endpoint url ,form data 
-      })
+    axios.post("http://localhost:4000/api/v1/users", data)
       .then(res => this.setState({ users: res.data.users }));
    }
 
@@ -43,7 +44,6 @@ class App extends Component {
             <button type="button" className="btn" style={BtnUpload} onClick={this.onClickHandler}>Upload</button>   
           </div>
         
-          {/* <Todos todos={this.state.todos}/> */}
           <div style={UserListStyle}>
             <ul style={UserListUlStyle}>
               {this.state.users.map(item => (
