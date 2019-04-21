@@ -35,7 +35,7 @@ class App extends Component {
   onClickHandler = () => {
     const data = new FormData()
     data.append('file', this.state.selectedFile)
-    axios.get("http://localhost:4000/api/v1/users", data, { 
+    axios.post("http://localhost:4000/api/v1/users", data, { 
       // receive two parameter endpoint url ,form data 
       })
       .then(res => { 
