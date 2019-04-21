@@ -13,8 +13,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('test')
-    axios.get("http://localhost:4000/api/v1/users")
+    // need to use env variables instead, hack
+    // axios.get("http://localhost:4000/api/v1/users")
+    //   .then(res => this.setState({ users: res.data.users }));
+    axios.get("https://wh-family-tree-api.herokuapp.com/api/v1/users")
       .then(res => this.setState({ users: res.data.users }));
   }
 
@@ -28,7 +30,10 @@ class App extends Component {
   onClickHandler = () => {
     const data = new FormData()
     data.append('file', this.state.selectedFile)
-    axios.post("http://localhost:4000/api/v1/users", data)
+    // need to use env variables instead, hack
+    // axios.post("http://localhost:4000/api/v1/users", data)
+    //   .then(res => this.setState({ users: res.data.users }));
+    axios.post("https://wh-family-tree-api.herokuapp.com/api/v1/users", data)
       .then(res => this.setState({ users: res.data.users }));
    }
 
