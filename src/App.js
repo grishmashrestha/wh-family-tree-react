@@ -6,23 +6,7 @@ import './App.css';
 class App extends Component {
   
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Take out the trash",
-        completed: true
-      },
-      {
-        id: 2,
-        title: "Sankata with boo boo",
-        completed: false
-      },
-      {
-        id: 3,
-        title: "Avengers endgame with friends",
-        completed: false
-      }
-    ]
+    users: []
   }
 
   onChangeHandler=event=>{
@@ -38,10 +22,7 @@ class App extends Component {
     axios.post("http://localhost:4000/api/v1/users", data, { 
       // receive two parameter endpoint url ,form data 
       })
-      .then(res => { 
-        // then print response status
-        console.log(res.statusText)
-      })
+      .then(res => this.setState({ users: res.data.users }));
    }
 
   render() {
@@ -49,7 +30,15 @@ class App extends Component {
       <div className="App">
         <input type="file" name="file" onChange={this.onChangeHandler}/>
         <button type="button" className="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
-        <Todos todos={this.state.todos}/>
+        {/* <Todos todos={this.state.todos}/> */}
+        <div>
+          <ul>
+            {this.state.users.map(item => (
+              <li key={item.id}>{item.full_name}, {item.address || "no address"}</li>
+            ))}
+          </ul>
+        </div>
+       
       </div>
     );
   }
